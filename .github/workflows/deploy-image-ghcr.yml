@@ -31,7 +31,8 @@ jobs:
           IMAGE_NAME: ${{ github.repository }}
         uses: docker/build-push-action@v4
         with:
-          context: .          
+          # context: ComparadorMetodoPgto
+          file: ./ComparadorMetodoPgto/Dockerfile
           target: latest
           push: true
           tags: |
