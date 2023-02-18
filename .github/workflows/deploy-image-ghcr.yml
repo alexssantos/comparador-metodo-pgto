@@ -1,4 +1,4 @@
-name: Deploy Image to Github Container Registry CI
+name: Deploy Image to Github Container Registry 
 
 on:
   push:
