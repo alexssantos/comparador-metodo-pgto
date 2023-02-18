@@ -52,6 +52,6 @@ jobs:
 
       - name: 'Build Inventory Image'
         run: |
-          docker build ./ComparadorMetodoPgto/Dockerfile --tag ghcr.io/alexssantos/comparador-metodo-pgto:latest
+          docker build . --tag ghcr.io/alexssantos/comparador-metodo-pgto:latest
           docker push ghcr.io/alexssantos/comparador-metodo-pgto:latest
 
