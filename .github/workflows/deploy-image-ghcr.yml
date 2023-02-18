@@ -36,6 +36,7 @@ jobs:
         with:
           # context: ComparadorMetodoPgto
           file: ./ComparadorMetodoPgto/Dockerfile
+          no-cache: true
           # target: latest
           push: true
           tags: |
