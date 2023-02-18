@@ -7,9 +7,11 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["./ComparadorMetodoPgto.Api/ComparadorMetodoPgto.Api.csproj", "./ComparadorMetodoPgto.Api/"]
-RUN dotnet restore "./ComparadorMetodoPgto.Api/ComparadorMetodoPgto.Api.csproj"
+RUN ls -o
+COPY ["ComparadorMetodoPgto.Api/ComparadorMetodoPgto.Api.csproj", "ComparadorMetodoPgto.Api/"]
+RUN dotnet restore "ComparadorMetodoPgto.Api/ComparadorMetodoPgto.Api.csproj"
 COPY . .
+RUN ls -o
 WORKDIR "/src/ComparadorMetodoPgto.Api"
 RUN dotnet build "ComparadorMetodoPgto.Api.csproj" -c Release -o /app/build
 
