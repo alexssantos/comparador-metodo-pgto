@@ -18,13 +18,24 @@ jobs:
         uses: actions/checkout@main
 
       - name: 'Login to GitHub Container Registry'
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.MY_PASS }}
-
-      - name: 'Build Inventory Image'
         run: |
-          docker build . --tag ghcr.io/alexssantos/cm-pgto:latest
-          docker push ghcr.io/alexssantos/cm-pgto:latest
+          echo $CR_PAT | docker login ghcr.io -u alexssantos --password-stdin
+      
+      # - name: 'Login to GitHub Container Registry'
+      #   uses: docker/login-action@v1
+      #   with:
+      #     registry: ghcr.io
+      #     username: ${{ github.actor }}
+      #     password: ${{ secrets.MY_PASS }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:          
+          push: true
+          tags: alexssantos/cm-pgto:latest
+
+      # - name: 'Build Inventory Image'
+      #   run: |
+      #     docker build . --tag ghcr.io/alexssantos/cm-pgto:latest
+      #     docker push ghcr.io/alexssantos/cm-pgto:latest
+
