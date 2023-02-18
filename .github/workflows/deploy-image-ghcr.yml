@@ -36,7 +36,7 @@ jobs:
           target: latest
           push: true
           tags: |
-            $REGISTRY/$OWNER/$IMAGE_NAME:$(date +%s)
+            ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.IMAGE_NAME }}:latest
           build-args: |
             ENVIRONMENT=production
       
