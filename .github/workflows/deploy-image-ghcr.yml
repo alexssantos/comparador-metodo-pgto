@@ -36,7 +36,7 @@ jobs:
         with:
           # context: ComparadorMetodoPgto
           file: ./ComparadorMetodoPgto/Dockerfile
-          target: latest
+          # target: latest
           push: true
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
