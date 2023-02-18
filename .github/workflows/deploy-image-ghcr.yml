@@ -27,22 +27,22 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Build and Push Docker Image
-      #   env:
-      #     REGISTRY: ghcr.io
-      #     # OWNER: ${{ github.actor }}
-      #     IMAGE_NAME: ${{ github.repository }}
-      #   uses: docker/build-push-action@v4
-      #   with:
-      #     # context: ComparadorMetodoPgto
-      #     file: ./ComparadorMetodoPgto/Dockerfile
-      #     no-cache: true
-      #     # target: latest
-      #     push: true
-      #     tags: |
-      #       ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-      #     # build-args: |
-      #     #   ENVIRONMENT=production
+      - name: Build and Push Docker Image
+        env:
+          REGISTRY: ghcr.io
+          # OWNER: ${{ github.actor }}
+          IMAGE_NAME: ${{ github.repository }}
+        uses: docker/build-push-action@v2
+        with:
+          # context: ComparadorMetodoPgto
+          file: ./ComparadorMetodoPgto/Dockerfile
+          # no-cache: true
+          # target: latest
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          # build-args: |
+          #   ENVIRONMENT=production
       
       # - name: Build and push
       #   uses: docker/build-push-action@v4
@@ -50,8 +50,10 @@ jobs:
       #     push: true
       #     tags: alexssantos/cm-pgto:latest
 
-      - name: 'Build Inventory Image'
-        run: |
-          docker build . --tag ghcr.io/alexssantos/comparador-metodo-pgto:latest
-          docker push ghcr.io/alexssantos/comparador-metodo-pgto:latest
+
+      ## !! denied: installation not allowed to Create organization package
+      # - name: 'Build Inventory Image'
+      #   run: |
+      #     docker build . --tag ghcr.io/alexssantos/comparador-metodo-pgto:latest
+      #     docker push ghcr.io/alexssantos/comparador-metodo-pgto:latest
 
