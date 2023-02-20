@@ -7,7 +7,6 @@
 	<UserSecretsId>3e567f95-cf97-4d4f-8de2-7602c7888a1d</UserSecretsId>
 	<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
-
 	
 	<!-- Debug Container port | [HostPort]:[ContainerPort] -->
   <!--<PropertyGroup>
