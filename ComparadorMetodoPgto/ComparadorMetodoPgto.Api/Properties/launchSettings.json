@@ -19,20 +19,31 @@
       }
     },
     "Docker": {
+      // host:container (externa:interna)
+      // Por Padrao, o debug usa as portas 80 (http) e 443 (https) no container
       "commandName": "Docker",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
-      "publishAllPorts": true,
-      "useSSL": true
-    }
-  },
-  "$schema": "https://json.schemastore.org/launchsettings.json",
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:29251",
-      "sslPort": 44343
+      "environmentVariables": {
+        // << Application Configs >>
+        //"PORT": "8080",
+        //"ASPNETCORE_URLS": "http://+:7001"
+        //"ASPNETCORE_HTTPS_PORT": "5002"
+      },
+      //  << HostPorts >>
+      //"httpPort": 7001,
+      //"useSSL": true,
+      //"sslPort": 7002
+    },
+    "$schema": "https://json.schemastore.org/launchsettings.json",
+    "iisSettings": {
+      "commandName": "IIS",
+      "windowsAuthentication": false,
+      "anonymousAuthentication": true,
+      "iisExpress": {
+        "applicationUrl": "http://localhost:55026/",
+        "sslPort": 44335
+      }
     }
   }
 }
