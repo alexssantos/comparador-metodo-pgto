@@ -1,10 +1,10 @@
 name: Deploy Image to Github Container Registry 
 
 on:
-  push:
-    branches: [ "main" ]
+  #push:
+  #  branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "prd" ]
   workflow_dispatch:
 
 jobs:
@@ -56,10 +56,8 @@ jobs:
       #     push: true
       #     tags: alexssantos/cm-pgto:latest
 
-
-      ## !! denied: installation not allowed to Create organization package !!
-      - name: 'Build Inventory Image'
-        run: |
-          docker build . --tag ghcr.io/alexssantos/comparador-metodo-pgto:latest
-          docker push ghcr.io/alexssantos/comparador-metodo-pgto:latest
+      #- name: 'Build Inventory Image'
+      #  run: |
+      #    docker build . --tag ghcr.io/alexssantos/comparador-metodo-pgto:latest
+      #    docker push ghcr.io/alexssantos/comparador-metodo-pgto:latest
 
