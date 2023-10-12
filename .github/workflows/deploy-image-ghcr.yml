@@ -40,6 +40,10 @@ jobs:
           password: ${{ secrets.CR_PAT2 }}
       
 
+      - name: Build the hello-docker Docker image
+        run: |
+          echo "CR_PAT2: ${{ secrets.CR_PAT2 }}"
+          
       # - name: Build and Push 1
       #   env:
       #     REGISTRY: ghcr.io
@@ -61,7 +65,7 @@ jobs:
       #   with:          
       #     push: true
       #     tags: alexssantos/cm-pgto:latest
-      
+
    
       - name: Build and push 3
         #docs: https://github.com/docker/build-push-action
@@ -69,7 +73,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./ComparadorMetodoPgto # (default {context}/Dockerfile)
-          # file: ./ComparadorMetodoPgto/Dockerfile # (default {context}/Dockerfile)
+          # file:  # (default "{context}/Dockerfile")
           push: true
           tags: ${{ env.IMAGE_NAME }}:latest,${{ env.IMAGE_NAME }}:${{ env.RELEASE_DATE }}
 
