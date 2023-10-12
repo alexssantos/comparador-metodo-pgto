@@ -60,12 +60,9 @@ jobs:
       #   with:          
       #     push: true
       #     tags: alexssantos/cm-pgto:latest
-
-      - name: Set SHORT_SHA        
-        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $SHORT_SHA
-
+   
       - name: 'Build Inventory Image'
         run: |
-          docker build . --tag $REGISTRY_URL:$SHORT_SHA
-          docker push $REGISTRY_URL:$SHORT_SHA
+          docker build . --tag $REGISTRY_URL:${GITHUB_SHA:0:7}
+          docker push $REGISTRY_URL:${GITHUB_SHA:0:7}
 
