@@ -11,7 +11,6 @@ env:
   USER: alexssantos
   PACKAGE: comparador-metodo-pgto
   REGISTRY_URL: ghcr.io/alexssantos/comparador-metodo-pgto
-  TAG_IMG: $GITHUB_SHA
 
 jobs:
   push-store-image:
@@ -64,6 +63,6 @@ jobs:
 
       - name: 'Build Inventory Image'
         run: |
-          docker build . --tag $REGISTRY_URL:$TAG_IMG
-          docker push $REGISTRY_URL:$TAG_IMG
+          docker build . --tag $REGISTRY_URL:$GITHUB_SHA
+          docker push $REGISTRY_URL:$GITHUB_SHA
 
