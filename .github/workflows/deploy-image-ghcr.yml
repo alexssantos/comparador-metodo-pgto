@@ -8,8 +8,9 @@ on:
   workflow_dispatch:
 
 env:
-  USER: alexssantos
-  PACKAGE: comparador-metodo-pgto
+  USER: ${{ github.actor }} #alexssantos
+  PACKAGE: ${{ github.repository }} #comparador-metodo-pgto
+  IMAGE_NAME: ${{ github.actor }}/${{ github.repository }}
   REGISTRY: ghcr.io
   REGISTRY_URL: ghcr.io/alexssantos/comparador-metodo-pgto
 
@@ -32,13 +33,15 @@ jobs:
       #     echo ${{ secrets.CR_PAT2 }} | docker login ghcr.io -u alexssantos --password-stdin
 
       - name: 'Login to GitHub Container Registry'
+        #docs: https://github.com/docker/login-action
         uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.CR_PAT2 }}
+      
 
-      # - name: Build and Push Docker Image
+      # - name: Build and Push 1
       #   env:
       #     REGISTRY: ghcr.io
       #     # OWNER: ${{ github.actor }}
@@ -53,14 +56,24 @@ jobs:
       #     # build-args: |
       #     #   ENVIRONMENT=production
       
-      # - name: Build and push
+      # - name: Build and push 2
       #   uses: docker/build-push-action@v4
       #   with:          
       #     push: true
       #     tags: alexssantos/cm-pgto:latest
    
-      - name: 'Build Inventory Image'
-        run: |
-          docker build . --tag $REGISTRY_URL:${RELEASE_DATE}-${GITHUB_SHA:0:7}
-          docker push $REGISTRY_URL:${RELEASE_DATE}-${GITHUB_SHA:0:7}
+      - name: Build and push 3
+        #docs: https://github.com/docker/build-push-action
+        #docs-inputs: https://github.com/docker/build-push-action#inputs
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ env.IMAGE_NAME }}:latest,${{ env.IMAGE_NAME }}:${RELEASE_DATE}-${GITHUB_SHA:0:7}
+          labels:
+
+      # - name: 'Build Inventory Image'
+      #   run: |
+      #     docker build . --tag $REGISTRY_URL:${RELEASE_DATE}-${GITHUB_SHA:0:7}
+      #     docker push $REGISTRY_URL:${RELEASE_DATE}-${GITHUB_SHA:0:7}
 
