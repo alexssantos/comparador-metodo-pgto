@@ -66,7 +66,8 @@ jobs:
         #docs-inputs: https://github.com/docker/build-push-action#inputs
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: . # (default {context}/Dockerfile)
+          file: ./ComparadorMetodoPgto/Dockerfile # (default {context}/Dockerfile)
           push: true
           tags: ${{ env.IMAGE_NAME }}:latest,${{ env.IMAGE_NAME }}:${{ env.RELEASE_DATE }}
 
