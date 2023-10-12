@@ -8,9 +8,8 @@ on:
   workflow_dispatch:
 
 env:
-  USER: ${{ github.actor }} #alexssantos
-  PACKAGE: ${{ github.repository }} #comparador-metodo-pgto
-  IMAGE_NAME: ${{ github.actor }}/${{ github.repository }}
+  USER: ${{ github.actor }} #alexssantos  
+  IMAGE_NAME: ${{ github.repository }}
   REGISTRY: ghcr.io
   REGISTRY_URL: ghcr.io/alexssantos/comparador-metodo-pgto
 
@@ -26,7 +25,7 @@ jobs:
      
       - name: set release date
         run: |
-          echo "RELEASE_DATE=$(date +%Y%m%d)" >> ${GITHUB_ENV}
+          echo "RELEASE_DATE=$(date +%Y%m%d)-${GITHUB_SHA:0:7}" >> ${GITHUB_ENV}
 
       # - name: 'Login to GitHub Container Registry  (puxadinho)'
       #   run: |
