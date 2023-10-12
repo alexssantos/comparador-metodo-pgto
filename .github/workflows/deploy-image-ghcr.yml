@@ -67,5 +67,5 @@ jobs:
       - name: 'Build Inventory Image'
         run: |
           docker build . --tag $REGISTRY_URL:${RELEASE_DATE}-${GITHUB_SHA:0:7}
-            docker push $REGISTRY_URL:${RELEASE_DATE}-${GITHUB_SHA:0:7}
+          docker push $REGISTRY_URL:${RELEASE_DATE}-${GITHUB_SHA:0:7}
 
