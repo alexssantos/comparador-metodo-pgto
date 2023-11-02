@@ -2,7 +2,7 @@
   "profiles": {
     "Local [Kestrel]": {
       "commandName": "Project",
-      "launchBrowser": true,
+      "launchBrowser": false,
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
@@ -12,40 +12,25 @@
     },
     "IIS Express": {
       "commandName": "IISExpress",
-      "launchBrowser": true,
+      "launchBrowser": false,
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "Docker": {
-      // host:container (externa:interna)
-      // Por Padrao, o debug usa as portas 80 (http) e 443 (https) no container
-      // https://learn.microsoft.com/pt-br/visualstudio/containers/container-launch-settings?view=vs-2022
       "commandName": "Docker",
       "launchBrowser": true,
-      //"DockerfileRunArguments":"-f ../Dockerfile",
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger"
-      //"environmentVariables": {
-      // << Application Configs >>
-      //"PORT": "8080",
-      //"ASPNETCORE_URLS": "http://+:7001"
-      //"ASPNETCORE_HTTPS_PORT": "5002"
-      //},
-      //  << HostPorts >>
-      //"httpPort": 7001,
-      //"useSSL": true,
-      //"sslPort": 7002
-      //},
-      //"$schema": "https://json.schemastore.org/launchsettings.json",
-      //"iisSettings": {
-      //  "commandName": "IIS",
-      //  "windowsAuthentication": false,
-      //  "anonymousAuthentication": true,
-      //  "iisExpress": {
-      //    "applicationUrl": "http://localhost:55026/",
-      //    "sslPort": 44335
-      //  }
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      
+    }
+  },
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:57170/",
+      "sslPort": 44353
     }
   }
 }
