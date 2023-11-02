@@ -18,8 +18,8 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime-env
 EXPOSE 8080
 ENV ASPNETCORE_URLS="http://+:8080"
 ENV ASPNETCORE_ENVIRONMENT="Development"
-ENV PROJECT="ComparadorMetodoPgto.Api.dll"
+# ENV PROJECT="ComparadorMetodoPgto.Api.dll"
 
 WORKDIR /app
 COPY --from=publish-env /app/published .
-ENTRYPOINT ["dotnet", $PROJECT]
+ENTRYPOINT ["dotnet", "ComparadorMetodoPgto.Api.dll"]
