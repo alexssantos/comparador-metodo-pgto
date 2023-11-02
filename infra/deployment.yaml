@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comp-met-pgto-app
+  namespace: dev-cmp
+  labels:
+    app: comp-met-pgto
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: comp-met-pgto
+  # Container molde
+  template:
+    metadata:
+      labels: #Bind Deployment-Pod
+        app: comp-met-pgto
+    spec:
+      # Api
+      containers:
+      - name: comp-met-pgto-app
+        image: ghcr.io/alexssantos/comparador-metodo-pgto:20231021_220037
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080          
+      #   volumeMounts:
+      #   - name: config-volume
+      #     mountPath: /app/config
+      # # Data
+      # volumes:
+      # - name: config-volume
+      #   configMap:
+      #     name: demo-config
+
+---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: config
+#   namespace: dev-cmp
+# data:
+#   appsettings.json: |-
+#     {
+#       "Logging": {
+#         "LogLevel": {
+#           "Default": "Error",
+#           "System": "Error",
+#           "Microsoft": "Error"
+#         }
+#       }
+#     }
+
+---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: service
+#   namespace: devenv-cmp
+#   labels:
+#     app: comp-met-pgto
+#     service: comp-met-pgto
+# spec:
+#   type: ClusterIP
+#   ports:
+#     - targetPort: 8080
+#       port: 80
+#       protocol: TCP
+#   selector:
+#     service: comp-met-pgto
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: comp-met-pgto
+  namespace: dev-cmp
+spec:
+  selector:
+    app: comp-met-pgto
+  type: NodePort
+  ports:
+  - name: comp-met-pgto-port
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+    nodePort: 30088
